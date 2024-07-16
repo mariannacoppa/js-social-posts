@@ -88,7 +88,7 @@ posts.forEach((post) => {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                        Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
@@ -96,4 +96,12 @@ posts.forEach((post) => {
 });
 // recupero i pulsanti dei like
 const like_buttons = document.querySelectorAll('.js-like-button');
-console.log(like_buttons);
+// recupero l'elemento che contiene il numero di likes
+const likes__counter = document.querySelectorAll('.js-likes-counter');
+// assegno a ciascun pulsante l'evento click
+// ciclo l'array dei pulsanti
+for (let i = 0; i < like_buttons.length; i++) {
+    // creo variabile contentente il valore attualmente ciclato
+    let button = like_buttons[i];
+    console.log(button);
+}
