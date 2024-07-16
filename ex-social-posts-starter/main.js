@@ -58,3 +58,7 @@ const posts = [
 ];
 // ecupero elemento del dom che deve contenere i post
 const container = document.getElementById('container');
+// ciclo i post pe metterli all'interno del container
+posts.forEach((post) => {
+    container.innerHTML += `<div>${post.content}</div>`;
+})
