@@ -109,5 +109,12 @@ for (let i = 0; i < like_buttons.length; i++) {
         event.preventDefault();
         // aggiungo la classe che indica che il pulsante è cliccato
         this.classList.add('like-button--liked');
+        // per incrementare il numero dei like, recupero il numero dei like al post cliccato
+        let likes_dom = likes__counter[i];
+        // recupero il numero di like e lo trasformo in numero
+        let likes = parseInt(likes_dom.innerText);
+        // inserisco nuovo valore dei like nel dom
+        likes_dom.innerText = likes + 1;
+        
     });
 }
