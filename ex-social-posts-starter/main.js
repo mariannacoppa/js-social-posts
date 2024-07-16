@@ -126,6 +126,26 @@
 //     });
 // }
 // -------------BONUS---------------------------------------------
+// funzione che recupera l'immagine di profilo
+function getProfileImage(author) {
+    let { name, image } = author;
+    return `<img src="${author.image}" alt="${name}" class="profile-pic"`;
+}
+// funzione che crea l'immagine di profil con le iniziali dell'autore
+function getDefaultProfileImage(author) {
+    let { name, image } = author;
+    // divido nome e cognome
+    let parts = name.split(" ");
+    // prendo le iniziali di nome e cognome
+    let initialName = parts[0].charAt(0);
+    let initialSurname = parts[1].charAt(0);
+    // unisco le iniziali per creare la finta immagine di profilo
+    let initials = `${initialName}${initialSurname}`;
+    // restituisco la parte di dom appena creata
+    return `<div class="profile-pic-default"
+                <span>${initials}</span>
+            </div>`;
+}
 const posts = [
     {
         "id": 1,
@@ -199,7 +219,7 @@ posts.forEach((post) => {
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${author.image}" alt="${author.name}">                    
+                        ${author.image != null ? getProfileImage(author) : getDefaultProfileImage(author)}                   
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${author.name}</div>
