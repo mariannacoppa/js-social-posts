@@ -103,5 +103,11 @@ const likes__counter = document.querySelectorAll('.js-likes-counter');
 for (let i = 0; i < like_buttons.length; i++) {
     // creo variabile contentente il valore attualmente ciclato
     let button = like_buttons[i];
-    console.log(button);
+    // aggiungo evento click al pulsante
+    button.addEventListener('click', function (event) {
+        // evito che la pagina torni in alto dopo il click
+        event.preventDefault();
+        // aggiungo la classe che indica che il pulsante è cliccato
+        this.classList.add('like-button--liked');
+    });
 }
