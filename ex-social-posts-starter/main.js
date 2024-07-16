@@ -56,12 +56,12 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
-// ecupero elemento del dom che deve contenere i post
+// recupero elemento del dom che deve contenere i post
 const container = document.getElementById('container');
 // ciclo i post pe metterli all'interno del container
 posts.forEach((post) => {
     // destrutturazione del post
-    let {id, author, content, media, likes, created} = post;
+    let { id, author, content, media, likes, created } = post;
     container.innerHTML += `
         <div class="post">
             <div class="post__header">
@@ -71,7 +71,7 @@ posts.forEach((post) => {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${author.name}</div>
-                        <div class="post-meta__time">4 mesi fa</div>
+                        <div class="post-meta__time">${created}</div>
                     </div>                    
                 </div>
             </div>
@@ -82,7 +82,7 @@ posts.forEach((post) => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" href="#" data-postid="${id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -93,4 +93,7 @@ posts.forEach((post) => {
                 </div> 
             </div>            
         </div>`;
-})
+});
+// recupero i pulsanti dei like
+const like_buttons = document.querySelectorAll('.js-like-button');
+console.log(like_buttons);
