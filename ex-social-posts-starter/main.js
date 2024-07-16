@@ -56,6 +56,8 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+// creo un array vuoto per contenere gli id dei post cliccati
+const likes_array = [];
 // recupero elemento del dom che deve contenere i post
 const container = document.getElementById('container');
 // ciclo i post pe metterli all'interno del container
@@ -115,6 +117,11 @@ for (let i = 0; i < like_buttons.length; i++) {
         let likes = parseInt(likes_dom.innerText);
         // inserisco nuovo valore dei like nel dom
         likes_dom.innerText = likes + 1;
-        
+        // inserisco nell'array dei likes l'id del post cliccato
+        // recupero il post cliccato
+        let post = posts[i];
+        // aggiungo l'id del post cliccato nell'array
+        likes_array.push(post.id);
+        console.log(likes_array);
     });
 }
