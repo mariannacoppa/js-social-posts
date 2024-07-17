@@ -212,8 +212,8 @@ posts.forEach((post) => {
     // destrutturazione del post
     let { id, author, content, media, likes, created } = post;
     // bonus 1: formatto la data in formato italiano gg/mm/aaaa
-    let split_date = created.split('-');
-    let data = `${split_date[2]}/${split_date[1]}/${split_date[0]}`;
+    let data = created.split('-').reverse().join('/');
+    // let data = `${split_date[2]}/${split_date[1]}/${split_date[0]}`;
     container.innerHTML += `
         <div class="post">
             <div class="post__header">
@@ -259,19 +259,33 @@ for (let i = 0; i < like_buttons.length; i++) {
     button.addEventListener('click', function (event) {
         // evito che la pagina torni in alto dopo il click
         event.preventDefault();
-        // aggiungo la classe che indica che il pulsante è cliccato
-        this.classList.add('like-button--liked');
-        // per incrementare il numero dei like, recupero il numero dei like al post cliccato
-        let likes_dom = likes__counter[i];
-        // recupero il numero di like e lo trasformo in numero
-        let likes = parseInt(likes_dom.innerText);
-        // inserisco nuovo valore dei like nel dom
-        likes_dom.innerText = likes + 1;
-        // inserisco nell'array dei likes l'id del post cliccato
-        // recupero il post cliccato
-        let post = posts[i];
-        // aggiungo l'id del post cliccato nell'array
-        likes_array.push(post.id);
-        console.log(likes_array);
+        // bonus 3: se il post è già cliccato il contatore decrementa e il pulsante cambia colore
+        // controllo se il post ha già il like
+        if (button.classList.contains('like-button--liked')) {
+            // rimuovo la classe che indica che il pulsante è cliccato
+            this.classList.remove('like-button--liked');
+            // per incrementare il numero dei like, recupero il numero dei like al post cliccato
+            let likes_dom = likes__counter[i];
+            // recupero il numero di like e lo trasformo in numero
+            let likes = parseInt(likes_dom.innerText);
+            // inserisco nuovo valore dei like nel dom
+            likes_dom.innerText = likes - 1;
+        }
+        else {
+            // aggiungo la classe che indica che il pulsante è cliccato
+            this.classList.add('like-button--liked');
+            // per incrementare il numero dei like, recupero il numero dei like al post cliccato
+            let likes_dom = likes__counter[i];
+            // recupero il numero di like e lo trasformo in numero
+            let likes = parseInt(likes_dom.innerText);
+            // inserisco nuovo valore dei like nel dom
+            likes_dom.innerText = likes + 1;
+            // // inserisco nell'array dei likes l'id del post cliccato
+            // // recupero il post cliccato
+            // let post = posts[i];
+            // // aggiungo l'id del post cliccato nell'array
+            // likes_array.push(post.id);
+            // console.log(likes_array);
+        }
     });
 }
